@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo usuario — Social Media</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/theme.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="brand-bar">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">Social Media</a>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 40px; margin-bottom: 60px;">
+    <div class="form-container">
+      <h4 style="margin-bottom: 30px; text-align: center;">Nuevo usuario</h4>
+
+      <% if (error) { %>
+        <p class="red-text" style="margin-bottom: 20px; text-align: center;"><%= error %></p>
+      <% } %>
+
+      <form action="/users" method="POST" class="form-panel">
+
+        <!-- Sección 1: Datos Personales -->
+        <div class="form-section">
+          <div class="form-section-header">
+            <i class="material-icons">badge</i>
+            <h5>Datos Personales</h5>
+          </div>
+
+          <div class="input-field">
+            <input type="text" name="name" id="name" required>
+            <label for="name">Nombre</label>
+          </div>
+
+          <div class="input-field">
+            <input type="text" name="lastName" id="lastName" required>
+            <label for="lastName">Apellido</label>
+          </div>
+
+          <div class="input-field">
+            <input type="email" name="email" id="email" required>
+            <label for="email">Correo electrónico</label>
+          </div>
+
+          <div class="input-field">
+            <input type="number" name="age" id="age" min="18" required>
+            <label for="age">Edad (mínimo 18)</label>
+          </div>
+
+          <div class="input-field">
+            <input type="text" name="phoneNumber" id="phoneNumber">
+            <label for="phoneNumber">Teléfono (opcional)</label>
+          </div>
+        </div>
+
+        <!-- Sección 2: Credenciales -->
+        <div class="form-section">
+          <div class="form-section-header">
+            <i class="material-icons">lock_outline</i>
+            <h5>Credenciales de Acceso</h5>
+          </div>
+
+          <div class="input-field">
+            <input type="password" name="password" id="password" minlength="8" required>
+            <label for="password">Contraseña (mínimo 8 caracteres)</label>
+          </div>
+        </div>
+
+        <!-- Footer con botones -->
+        <div class="form-footer">
+          <a href="/posts/new" class="btn-flat">Cancelar</a>
+          <button type="submit" class="btn waves-effect waves-light">Crear usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

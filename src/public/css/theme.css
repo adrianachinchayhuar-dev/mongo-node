@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Paleta Vibrante */
+  --terracota: #E25845;
+  --coral: #F18357;
+  --mostaza: #FACF72;
+  --turquesa: #68D5C9;
+  --oliva: #ADCB65;
+
+  /* Variables semánticas */
+  --bg: #FDFBF7;
+  --surface: #FFFFFF;
+  --text-main: #2C2A29;
+  --text-muted: #7A7571;
+  --border: #E8E4DF;
+  
+  --accent: var(--coral);
+  --accent-hover: var(--terracota);
+  --accent-soft: #FDE8E0;
+  
+  --radius-card: 16px;
+  --radius-btn: 8px;
+  --shadow-soft: 0 4px 20px rgba(226, 88, 69, 0.06);
+  --shadow-hover: 0 10px 30px rgba(226, 88, 69, 0.12);
+}
+
+body {
+  background-color: var(--bg) !important;
+  background-image: radial-gradient(#E8E4DF 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Tipografía ---- */
+h1, h2, h3, h4, h5, h6,
+.brand-logo, .card-title {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-weight: 700 !important;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+/* ---- Navbar ---- */
+nav.brand-bar {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--border) !important;
+  height: 70px;
+  line-height: 70px;
+}
+nav.brand-bar .brand-logo {
+  color: var(--text-main) !important;
+  font-style: italic;
+  font-size: 26px !important;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+nav.brand-bar .brand-logo::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--terracota));
+  border-radius: 50%;
+}
+
+/* ---- Botones ---- */
+.btn, .btn-large, .btn-small {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+  border-radius: var(--radius-btn) !important;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(241, 131, 87, 0.3) !important;
+  transition: all 0.3s ease !important;
+  padding: 0 24px;
+  text-transform: none;
+  font-size: 15px;
+}
+.btn:hover, .btn-large:hover {
+  background-color: var(--accent-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(226, 88, 69, 0.4) !important;
+}
+.btn-flat {
+  color: var(--text-muted) !important;
+  border-radius: var(--radius-btn) !important;
+  transition: all 0.2s;
+  text-transform: none;
+  background: transparent !important;
+}
+.btn-flat:hover {
+  background-color: var(--accent-soft) !important;
+  color: var(--terracota) !important;
+}
+
+/* ---- Cards ---- */
+.card {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: var(--surface);
+  position: relative;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--mostaza));
+  opacity: 0.8;
+}
+.card:hover {
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-4px);
+  border-color: var(--coral) !important;
+}
+.card .card-content {
+  padding: 28px;
+}
+.card .card-title {
+  font-size: 24px !important;
+  margin-bottom: 12px !important;
+  display: block;
+  line-height: 1.3;
+  color: var(--text-main);
+}
+.card .card-content p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+/* ---- Chips (Hashtags) ---- */
+.chip {
+  background-color: var(--mostaza) !important;
+  color: #6B4E00 !important;
+  font-weight: 600;
+  font-size: 12px !important;
+  border-radius: 6px !important;
+  padding: 0 12px;
+  height: 26px;
+  line-height: 26px;
+  margin: 2px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(250, 207, 114, 0.4);
+}
+.chip:nth-child(2n) {
+  background-color: var(--turquesa) !important;
+  color: #0A4D45 !important;
+  box-shadow: 0 2px 4px rgba(104, 213, 201, 0.4);
+}
+.chip:nth-child(3n) {
+  background-color: var(--oliva) !important;
+  color: #3A4D0A !important;
+  box-shadow: 0 2px 4px rgba(173, 203, 101, 0.4);
+}
+
+/* ============================================= */
+/* NUEVO DISEÑO DE FORMULARIO                    */
+/* ============================================= */
+
+.form-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.form-panel {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: 0 10px 40px rgba(226, 88, 69, 0.08);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.form-section {
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.form-section:last-of-type {
+  border-bottom: none;
+}
+
+.form-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.form-section-header i {
+  font-size: 28px;
+  color: var(--coral);
+}
+.form-section-header h5 {
+  margin: 0;
+  font-size: 20px !important;
+  font-family: 'Fraunces', serif !important;
+}
+
+.form-footer {
+  padding: 24px 40px;
+  background: #FDFBF7;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ============================================= */
+/* INPUTS - AJUSTES FINOS PARA ALINEACIÓN        */
+/* ============================================= */
+
+.form-section .input-field {
+  margin-bottom: 32px;
+  position: relative;
+  margin-top: 8px;
+}
+.form-section .input-field:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Inputs de texto, email, password, number ---- */
+.form-section .input-field input[type="text"],
+.form-section .input-field input[type="email"],
+.form-section .input-field input[type="password"],
+.form-section .input-field input[type="number"] {
+  background: #F9F7F5;
+  border-radius: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border) !important;
+  box-sizing: border-box;
+  height: auto;
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+.form-section .input-field input:focus {
+  background: #fff;
+  border-color: var(--coral) !important;
+  box-shadow: 0 0 0 2px rgba(241, 131, 87, 0.15) !important;
+  border-bottom: 1px solid var(--coral) !important;
+}
+
+/* Label para inputs de una línea */
+.form-section .input-field input + label {
+  left: 14px;
+  top: 13px;
+  font-size: 15px;
+  color: var(--text-muted);
+  transform: none;
+  transition: all 0.2s ease;
+}
+.form-section .input-field input:focus + label,
+.form-section .input-field input.active + label,
+.form-section .input-field input:not(:placeholder-shown) + label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: var(--coral);
+  transform: none;
+}
+
+/* ---- TEXTAREA ---- */
+.form-section .input-field textarea.materialize-textarea {
+  background: #F9F7F5;
+  border-radius: 6px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border) !important;
+  box-sizing: border-box;
+  min-height: 140px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin-bottom: 0;
+  resize: vertical;
+}
+.form-section .input-field textarea.materialize-textarea:focus {
+  background: #fff;
+  border-color: var(--coral) !important;
+  box-shadow: 0 0 0 2px rgba(241, 131, 87, 0.15) !important;
+  border-bottom: 1px solid var(--coral) !important;
+}
+
+/* Label del textarea: cuando está vacío, va DENTRO */
+.form-section .input-field textarea.materialize-textarea + label {
+  left: 14px;
+  top: 15px;
+  font-size: 15px;
+  color: var(--text-muted);
+  transform: none;
+  transition: all 0.2s ease;
+}
+/* Label del textarea: cuando hay texto o focus, flota ARRIBA */
+.form-section .input-field textarea.materialize-textarea:focus + label,
+.form-section .input-field textarea.materialize-textarea.valid + label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: var(--coral);
+  transform: none;
+}
+
+/* ---- SELECTS ---- */
+.form-section .select-wrapper {
+  position: relative;
+}
+.form-section .select-wrapper input.select-dropdown {
+  background: #F9F7F5;
+  border-radius: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border) !important;
+  margin-bottom: 0;
+  font-size: 15px;
+  height: auto;
+  line-height: 1.4;
+  color: var(--text-main);
+  box-sizing: border-box;
+}
+.form-section .select-wrapper input.select-dropdown:focus {
+  background: #fff;
+  border-color: var(--coral) !important;
+  box-shadow: 0 0 0 2px rgba(241, 131, 87, 0.15) !important;
+}
+.form-section .select-wrapper + label {
+  left: 14px;
+  top: 13px;
+  font-size: 15px;
+  color: var(--text-muted);
+  transform: none;
+  transition: all 0.2s ease;
+}
+.form-section .select-wrapper + label.active {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: var(--coral);
+  transform: none;
+}
+
+/* Caret del select */
+.form-section .select-wrapper .caret {
+  right: 14px;
+  fill: var(--text-muted);
+}
+
+/* ---- CHAR COUNT ---- */
+.char-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: -22px;
+  margin-bottom: 20px;
+  padding-right: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- CREAR USUARIO LINK ---- */
+.create-user-link {
+  display: inline-block;
+  margin-top: -20px;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--coral) !important;
+  transition: color 0.2s;
+}
+.create-user-link:hover {
+  color: var(--terracota) !important;
+  text-decoration: underline;
+}
+
+/* ============================================= */
+/* RESTO DE ESTILOS                              */
+/* ============================================= */
+
+/* ---- Hero de Home ---- */
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px) !important;
+  color: var(--text-main) !important;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero-subtitle {
+  color: var(--text-muted) !important;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+.hero-icon {
+  font-size: 80px !important;
+  color: var(--coral) !important;
+  margin-bottom: 20px;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ---- Empty State ---- */
+.empty-state svg { opacity: .3; }
+.empty-state h5 { font-family: 'Fraunces', serif; color: var(--text-main); }
+.empty-state p { color: var(--text-muted); }
+
+/* ---- Utilidades ---- */
+.accent-text { color: var(--terracota) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Ajuste para el footer de la tarjeta de posts */
+.card-action {
+  border-top: 1px solid var(--border) !important;
+  background: #FDFBF7 !important;
+  padding: 16px 24px !important;
+}
+
+/* Iconos de acción en tarjetas */
+.action-icon {
+  font-size: 20px;
+  transition: transform 0.2s, color 0.2s;
+}
+.action-icon.edit { color: var(--turquesa); }
+.action-icon.delete { color: var(--terracota); }
+.action-icon:hover { transform: scale(1.15); }

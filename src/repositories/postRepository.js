@@ -6,7 +6,11 @@ class PostRepository {
     }
 
     async findAll() {
-        return await Post.find().populate("user");
+        return await Post.find().populate("user").sort({ createdAt: -1 });
+    }
+
+    async findById(id) {
+        return await Post.findById(id).populate("user");
     }
 
     async findByUser(userId) {
@@ -14,8 +18,8 @@ class PostRepository {
     }
 
     async update(postId, postData) {
-        return await Post.findByIdAndUpdate(postId, postData, { new: true });
-        // { new: true } => devuelve el post actualizado en vez del antiguo
+        const dataToUpdate = { ...postData, updatedAt: Date.now() };
+        return await Post.findByIdAndUpdate(postId, dataToUpdate, { new: true });
     }
 
     async delete(postId) {

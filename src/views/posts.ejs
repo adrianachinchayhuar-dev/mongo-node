@@ -3,58 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social Media - Post</title>
-  <!-- Importar Materialize CSS -->
+  <title>Publicaciones — Social Media</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-  <!-- Iconos de Google -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/theme.css" rel="stylesheet">
 </head>
-<body class="grey lighten-4">
+<body>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="nav-wrapper teal">
-      <a href="#!" class="brand-logo center">Social Media</a>
+  <nav class="brand-bar">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">Social Media</a>
     </div>
   </nav>
 
-  <div class="container">
-    <h4 class="center-align">Bienvenido a Social Media</h4>
+  <div class="container" style="margin-top: 40px; margin-bottom: 60px;">
+    <div class="row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+      <div class="col s12 m6">
+        <h3 style="margin: 0;">Publicaciones</h3>
+        <p class="text-muted" style="margin: 5px 0 0;">Explora lo que otros comparten</p>
+      </div>
+      <div class="col s12 m6 right-align" style="margin-top: 10px;">
+        <a href="/posts/new" class="btn waves-effect waves-light">
+          <i class="material-icons left">add</i>Nuevo Post
+        </a>
+      </div>
+    </div>
 
     <div class="row">
-      <!-- Card del Post -->
-      <div class="col s12 m6 l4">
-        <div class="card">
-          <div class="card-image">
-            <img src="https://media.istockphoto.com/id/627795510/photo/example.jpg?s=612x612&w=0&k=20&c=lpUf5rjPVd6Kl_M6heqC8sUncR4FLmtsRzeYdTr5X_I=" alt="Imagen del post">
-          </div>
-          <div class="card-content">
-            <span class="card-title">Título del Post</span>
-            <p>
-              Este es un ejemplo de contenido del post. Aquí puedes escribir la descripción o texto relacionado.
-            </p>
-            <p>
-              <strong>Hashtags:</strong>  
-              <span class="chip">#ejemplo</span>
-              <span class="chip">#social</span>
-              <span class="chip">#media</span>
-              <span class="chip">#práctica</span>
-              <span class="chip">#nodejs</span>
-            </p>
-          </div>
-          <div class="card-action">
-            <div class="right">
-              <a href="#!" class="btn-flat"><i class="material-icons teal-text">edit</i></a>
-              <a href="#!" class="btn-flat"><i class="material-icons red-text">delete</i></a>
+      <% if (posts.length === 0) { %>
+        <div class="empty-state center-align" style="width:100%; padding:80px 0;">
+          <i class="material-icons large" style="font-size: 80px;">insert_drive_file</i>
+          <h5>Todavía no hay publicaciones</h5>
+          <p>Crea la primera desde el botón "Nuevo Post".</p>
+        </div>
+      <% } %>
+
+      <% posts.forEach(post => { %>
+        <div class="col s12 m6 l4">
+          <div class="card post-card">
+            <% if (post.imageUrl) { %>
+              <div class="card-image">
+                <img src="<%= post.imageUrl %>" alt="Imagen del post" style="height: 200px; object-fit: cover;">
+              </div>
+            <% } %>
+            <div class="card-content">
+              <span class="card-title"><%= post.title %></span>
+              <p><%= post.content %></p>
+              <% if (post.hashtags && post.hashtags.length > 0) { %>
+                <div style="margin-top: 12px;">
+                  <% post.hashtags.forEach(tag => { %>
+                    <span class="chip">#<%= tag %></span>
+                  <% }) %>
+                </div>
+              <% } %>
             </div>
-            <span><strong>Autor:</strong> Juan Pérez</span>
+            <div class="card-action" style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.85rem; color: var(--text-muted);">
+                <i class="material-icons tiny" style="vertical-align: middle; margin-right: 4px; color: var(--coral);">person</i>
+                <%= post.user ? (post.user.name + " " + post.user.lastName) : "Desconocido" %>
+              </span>
+              <div style="display: flex; gap: 4px;">
+                <a href="/posts/<%= post._id %>/edit" class="btn-flat tooltipped" data-tooltip="Editar" style="padding: 0 8px;">
+                  <i class="material-icons action-icon edit">edit</i>
+                </a>
+                <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline;"
+                      onsubmit="return confirm('¿Eliminar este post?');">
+                  <button type="submit" class="btn-flat tooltipped" data-tooltip="Eliminar" style="background:none;border:none; padding: 0 8px;">
+                    <i class="material-icons action-icon delete">delete</i>
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      <% }) %>
     </div>
   </div>
 
-  <!-- Importar Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.tooltipped');
+      var instances = M.Tooltip.init(elems);
+    });
+  </script>
 </body>
 </html>
